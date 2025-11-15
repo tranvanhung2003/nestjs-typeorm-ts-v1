@@ -10,7 +10,7 @@ POST {{baseUrl}}/messages
 Content-Type: application/json
 
 {
-    "content": "Hi there!"
+    "content": null
 }
 
 
