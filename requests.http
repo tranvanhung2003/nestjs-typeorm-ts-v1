@@ -10,9 +10,9 @@ POST {{baseUrl}}/messages
 Content-Type: application/json
 
 {
-    "content": null
+    "content": "second message"
 }
 
 
 ### Get a particular message
-GET {{baseUrl}}/messages/:id
+GET {{baseUrl}}/messages/df

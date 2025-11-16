@@ -5,14 +5,14 @@ type Message = {
   content: string;
 };
 
-type Messages = Record<number, Message>;
+type Messages = Record<string, Message>;
 
 export class MessagesRepository {
   async findOne(id: string) {
     const contents = await readFile('messages.json', 'utf8');
     const messages = JSON.parse(contents) as Messages;
 
-    return messages[id as unknown as number];
+    return messages[id];
   }
 
   async findAll() {
