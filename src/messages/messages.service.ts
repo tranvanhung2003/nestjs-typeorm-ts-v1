@@ -1,3 +1,4 @@
+import { NotFoundException } from '@nestjs/common';
 import { MessagesRepository } from './messages.repository';
 
 export class MessagesService {
@@ -9,15 +10,21 @@ export class MessagesService {
     this.messageRepo = new MessagesRepository();
   }
 
-  findOne(id: string) {
-    return this.messageRepo.findOne(id);
+  async findOne(id: string) {
+    const message = await this.messageRepo.findOne(id);
+
+    if (!message) {
+      throw new NotFoundException('Message not found');
+    }
+
+    return message;
   }
 
-  findAll() {
+  async findAll() {
     return this.messageRepo.findAll();
   }
 
-  create(content: string) {
+  async create(content: string) {
     return this.messageRepo.create(content);
   }
 }
