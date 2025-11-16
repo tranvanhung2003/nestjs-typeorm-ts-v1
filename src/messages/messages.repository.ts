@@ -1,14 +1,34 @@
-import { readFile } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
+
+type Message = {
+  id: number;
+  content: string;
+};
+
+type Messages = Record<number, Message>;
 
 export class MessagesRepository {
   async findOne(id: string) {
     const contents = await readFile('messages.json', 'utf8');
-    const messages = JSON.parse(contents);
+    const messages = JSON.parse(contents) as Messages;
 
-    return messages[id];
+    return messages[id as unknown as number];
   }
 
-  async findAll() {}
+  async findAll() {
+    const contents = await readFile('messages.json', 'utf8');
+    const messages = JSON.parse(contents) as Messages;
 
-  async create(message: string) {}
+    return messages;
+  }
+
+  async create(content: string) {
+    const contents = await readFile('messages.json', 'utf8');
+    const messages = JSON.parse(contents) as Messages;
+    const id = Math.floor(Math.random() * 999);
+
+    messages[id] = { id, content };
+
+    await writeFile('messages.json', JSON.stringify(messages));
+  }
 }
