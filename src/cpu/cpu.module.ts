@@ -2,6 +2,6 @@ import { Module } from '@nestjs/common';
 import { CpuService } from './cpu.service';
 
 @Module({
-  providers: [CpuService]
+  providers: [CpuService],
 })
 export class CpuModule {}
