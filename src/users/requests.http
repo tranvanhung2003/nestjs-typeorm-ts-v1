@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 
-### Find a particular user with a given ID
+### Find a particular user with a given id
 @id = 1
 GET {{baseUrl}}/auth/{{id}}
 
@@ -18,3 +18,8 @@ GET {{baseUrl}}/auth/{{id}}
 ### Find all users with a given email
 @email = tranvanhung@example.com
 GET {{baseUrl}}/auth?email={{email}}
+
+
+### Delete a user given id
+@id = 3
+DELETE {{baseUrl}}/auth/{{id}}
