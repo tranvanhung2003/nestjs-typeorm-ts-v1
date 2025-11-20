@@ -8,3 +8,13 @@ Content-Type: application/json
     "email": "{{email}}",
     "password": "{{password}}"
 }
+
+
+### Find a particular user with a given ID
+@id = 1
+GET {{baseUrl}}/auth/{{id}}
+
+
+### Find all users with a given email
+@email = tranvanhung@example.com
+GET {{baseUrl}}/auth?email={{email}}
