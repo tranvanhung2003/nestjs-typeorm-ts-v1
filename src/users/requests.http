@@ -1,25 +1,29 @@
 ### Create a new user
-@email = tranvanhung@example.com
-@password = SecurePass123!
 POST {{baseUrl}}/auth/signup
 Content-Type: application/json
 
 {
-    "email": "{{email}}",
-    "password": "{{password}}"
+    "email": "example@gmail.com",
+    "password": "matkhau"
 }
 
 
 ### Find a particular user with a given id
-@id = 1
-GET {{baseUrl}}/auth/{{id}}
+GET {{baseUrl}}/auth/1
 
 
 ### Find all users with a given email
-@email = tranvanhung@example.com
-GET {{baseUrl}}/auth?email={{email}}
+GET {{baseUrl}}/auth?email=example@gmail.com
 
 
 ### Delete a user given id
-@id = 3
-DELETE {{baseUrl}}/auth/{{id}}
+DELETE {{baseUrl}}/auth/1
+
+### Update a user given id
+PATCH {{baseUrl}}/auth/2
+Content-Type: application/json
+
+{
+    //"email": "example2@gmail.com",
+    "password": "matkhau2"
+}
