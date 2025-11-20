@@ -13,7 +13,7 @@ GET {{baseUrl}}/auth/1
 
 
 ### Find all users with a given email
-GET {{baseUrl}}/auth?email=example@gmail.com
+GET {{baseUrl}}/auth?email=example3@gmail.com
 
 
 ### Delete a user given id
@@ -24,6 +24,6 @@ PATCH {{baseUrl}}/auth/2
 Content-Type: application/json
 
 {
-    //"email": "example2@gmail.com",
-    "password": "matkhau2"
+    "email": "example2@gmail.com",
+    "password": "matkhau"
 }
