@@ -9,7 +9,7 @@ Content-Type: application/json
 
 
 ### Find a particular user with a given id
-GET {{baseUrl}}/auth/1
+GET {{baseUrl}}/auth/6
 
 
 ### Find all users with a given email
