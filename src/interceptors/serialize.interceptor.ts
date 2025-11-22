@@ -7,12 +7,16 @@ import {
 import { plainToInstance } from 'class-transformer';
 import { map, Observable } from 'rxjs';
 
-export function Serialize(dto: any) {
+interface ClassConstructor {
+  new (...args: any[]): any;
+}
+
+export function Serialize(dto: ClassConstructor) {
   return UseInterceptors(new SerializeInterceptor(dto));
 }
 
 export class SerializeInterceptor implements NestInterceptor {
-  constructor(private readonly dto: any) {}
+  constructor(private readonly dto: ClassConstructor) {}
 
   intercept(
     context: ExecutionContext,
@@ -20,6 +24,7 @@ export class SerializeInterceptor implements NestInterceptor {
   ): Observable<any> | Promise<Observable<any>> {
     return next.handle().pipe(
       map((data: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return plainToInstance(this.dto, data, {
           excludeExtraneousValues: true,
         });
