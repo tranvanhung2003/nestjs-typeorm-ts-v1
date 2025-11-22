@@ -13,14 +13,14 @@ GET {{baseUrl}}/auth/6
 
 
 ### Find all users with a given email
-GET {{baseUrl}}/auth?email=example3@gmail.com
+GET {{baseUrl}}/auth?email=example@gmail.com
 
 
 ### Delete a user given id
-DELETE {{baseUrl}}/auth/1
+DELETE {{baseUrl}}/auth/5
 
 ### Update a user given id
-PATCH {{baseUrl}}/auth/2
+PATCH {{baseUrl}}/auth/3
 Content-Type: application/json
 
 {

@@ -16,6 +16,7 @@ import { UserDto } from './dtos/user.dto';
 import { UsersService } from './users.service';
 
 @Controller('auth')
+@Serialize(UserDto)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -25,7 +26,6 @@ export class UsersController {
   }
 
   @Get(':id')
-  @Serialize(UserDto)
   async findUser(@Param('id') id: string) {
     const user = await this.usersService.findOne(parseInt(id));
 
