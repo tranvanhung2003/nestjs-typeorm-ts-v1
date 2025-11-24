@@ -17,7 +17,6 @@ export class AuthService {
       throw new BadRequestException('Email in use');
     }
 
-    // Hash the users password
     // Generate a salt
     const salt = randomBytes(8).toString('hex');
 
@@ -26,8 +25,12 @@ export class AuthService {
 
     // Join the hashed result and the salt together
     const result = `${salt}.${hash.toString('hex')}`;
+
     // Create a new user and save it
+    const user = await this.usersService.create(email, result);
+
     // Return the user
+    return user;
   }
 
   async signIn(email: string, password: string) {}
