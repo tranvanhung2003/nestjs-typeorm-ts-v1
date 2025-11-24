@@ -3,8 +3,18 @@ POST {{baseUrl}}/auth/signup
 Content-Type: application/json
 
 {
-    "email": "example5@gmail.com",
-    "password": "matkhau"
+    "email": "tranvanhung@gmail.com",
+    "password": "tranvanhung"
+}
+
+
+### Sign in a user
+POST {{baseUrl}}/auth/signin
+Content-Type: application/json
+
+{
+    "email": "tranvanhung@gmail.com",
+    "password": "tranvanhung"
 }
 
 
