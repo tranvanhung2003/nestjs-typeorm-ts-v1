@@ -26,24 +26,43 @@ export class UsersController {
   ) {}
 
   @Get('whoami')
-  whoAmI(@Session() session: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
+  whoAmI(@Session() session: Record<string, any>) {
+    if (!session.userId) {
+      throw new NotFoundException('No user is currently signed in');
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return this.usersService.findOne(session.userId);
   }
 
+  @Post('signout')
+  signOut(@Session() session: Record<string, any>) {
+    if (!session.userId) {
+      throw new NotFoundException('No user is currently signed in');
+    }
+
+    delete session.userId;
+
+    return { message: 'Successfully signed out' };
+  }
+
   @Post('signup')
-  async createUser(@Body() body: CreateUserDto, @Session() session: any) {
+  async createUser(
+    @Body() body: CreateUserDto,
+    @Session() session: Record<string, any>,
+  ) {
     const user = await this.authService.signUp(body.email, body.password);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     session.userId = user.id;
 
     return user;
   }
 
   @Post('signin')
-  async signIn(@Body() body: CreateUserDto, @Session() session: any) {
+  async signIn(
+    @Body() body: CreateUserDto,
+    @Session() session: Record<string, any>,
+  ) {
     const user = await this.authService.signIn(body.email, body.password);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     session.userId = user.id;
 
     return user;

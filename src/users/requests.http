@@ -13,13 +13,17 @@ POST {{baseUrl}}/auth/signin
 Content-Type: application/json
 
 {
-    "email": "example5@gmail.com",
-    "password": "matkhau"
+    "email": "test2@gmail.com",
+    "password": "test2"
 }
 
 
 ### Get the currently signed in user
 GET {{baseUrl}}/auth/whoami
+
+
+### Sign out
+POST {{baseUrl}}/auth/signout
 
 
 ### Find a particular user with a given id
