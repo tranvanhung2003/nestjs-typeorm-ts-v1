@@ -25,6 +25,12 @@ export class UsersController {
     private readonly authService: AuthService,
   ) {}
 
+  @Get('whoami')
+  whoAmI(@Session() session: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
+    return this.usersService.findOne(session.userId);
+  }
+
   @Post('signup')
   async createUser(@Body() body: CreateUserDto, @Session() session: any) {
     const user = await this.authService.signUp(body.email, body.password);

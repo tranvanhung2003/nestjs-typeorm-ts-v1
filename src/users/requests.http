@@ -3,8 +3,8 @@ POST {{baseUrl}}/auth/signup
 Content-Type: application/json
 
 {
-    "email": "test3@gmail.com",
-    "password": "test3"
+    "email": "test2@gmail.com",
+    "password": "test2"
 }
 
 
@@ -13,9 +13,13 @@ POST {{baseUrl}}/auth/signin
 Content-Type: application/json
 
 {
-    "email": "test2@gmail.com",
-    "password": "test2"
+    "email": "example5@gmail.com",
+    "password": "matkhau"
 }
+
+
+### Get the currently signed in user
+GET {{baseUrl}}/auth/whoami
 
 
 ### Find a particular user with a given id
@@ -27,7 +31,7 @@ GET {{baseUrl}}/auth?email=example@gmail.com
 
 
 ### Delete a user given id
-DELETE {{baseUrl}}/auth/5
+DELETE {{baseUrl}}/auth/20
 
 ### Update a user given id
 PATCH {{baseUrl}}/auth/3
