@@ -25,26 +25,22 @@ export class UsersController {
     private readonly authService: AuthService,
   ) {}
 
-  @Get('colors/:color')
-  setColor(@Param('color') color: string, @Session() session: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    session.color = color;
-  }
-
-  @Get('colors')
-  getColor(@Session() session: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
-    return session.color;
-  }
-
   @Post('signup')
-  createUser(@Body() body: CreateUserDto) {
-    return this.authService.signUp(body.email, body.password);
+  async createUser(@Body() body: CreateUserDto, @Session() session: any) {
+    const user = await this.authService.signUp(body.email, body.password);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    session.userId = user.id;
+
+    return user;
   }
 
   @Post('signin')
-  signIn(@Body() body: CreateUserDto) {
-    return this.authService.signIn(body.email, body.password);
+  async signIn(@Body() body: CreateUserDto, @Session() session: any) {
+    const user = await this.authService.signIn(body.email, body.password);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    session.userId = user.id;
+
+    return user;
   }
 
   @Get(':id')

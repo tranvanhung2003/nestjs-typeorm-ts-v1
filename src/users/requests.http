@@ -3,18 +3,18 @@ POST {{baseUrl}}/auth/signup
 Content-Type: application/json
 
 {
-    "email": "tranvanhung@gmail.com",
-    "password": "tranvanhung"
+    "email": "test3@gmail.com",
+    "password": "test3"
 }
 
 
-### Sign in a user
+### Sign in as an existing user
 POST {{baseUrl}}/auth/signin
 Content-Type: application/json
 
 {
-    "email": "tranvanhung@gmail.com",
-    "password": "tranvanhung"
+    "email": "test2@gmail.com",
+    "password": "test2"
 }
 
 
@@ -37,11 +37,3 @@ Content-Type: application/json
     "email": "example2@gmail.com",
     "password": "matkhau"
 }
-
-
-### Set a color
-GET {{baseUrl}}/auth/colors/redd
-
-
-### Get the color
-GET {{baseUrl}}/auth/colors
