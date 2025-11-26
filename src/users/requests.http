@@ -37,3 +37,11 @@ Content-Type: application/json
     "email": "example2@gmail.com",
     "password": "matkhau"
 }
+
+
+### Set a color
+GET {{baseUrl}}/auth/colors/redd
+
+
+### Get the color
+GET {{baseUrl}}/auth/colors
