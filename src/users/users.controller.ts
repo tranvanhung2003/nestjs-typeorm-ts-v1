@@ -9,7 +9,6 @@ import {
   Post,
   Query,
   Session,
-  UseInterceptors,
 } from '@nestjs/common';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
@@ -17,13 +16,11 @@ import { CurrentUser } from './decorators/current-user.decorator';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserDto } from './dtos/user.dto';
-import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
 import { User } from './users.entity';
 import { UsersService } from './users.service';
 
 @Controller('auth')
 @Serialize(UserDto)
-@UseInterceptors(CurrentUserInterceptor)
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
@@ -31,8 +28,8 @@ export class UsersController {
   ) {}
 
   @Get('whoami')
-  whoAmI(@Session() session: Record<string, any>, @CurrentUser() user: User) {
-    if (!session.userId) {
+  whoAmI(@CurrentUser() user: User) {
+    if (!user) {
       throw new NotFoundException('No user is currently signed in');
     }
 
